@@ -1,0 +1,142 @@
+html, body {
+  height: 100%;
+  margin:0;
+  background-color:#fff;
+  color:  #4d0000;
+}
+
+.meni
+{
+	background-color: silver;
+	width: 100%;
+	z-index: -1;
+	margin-top: 5%;
+	padding-bottom: 5%;
+}
+
+
+.meni a {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: underline;
+    font-size: 22px;
+	padding-bottom:0px;
+	color:  #4d0000;
+	display: inline;
+}
+
+#slika
+{
+	display: block;
+	margin-left: 45%;
+	margin-right: 45%;
+	position: absolute;
+	width: 10%;
+	top:0px;
+}
+
+
+.sadrzaj 
+{
+	margin-top: 1%;
+	background-color: silver;
+	width: 100%;
+	overflow: auto;
+}
+
+
+.red
+{
+	display: table-row; 
+}
+
+.item
+{
+	display: table-cell;
+    position: relative;
+    float: left;
+    width:  250px;
+    height: 250px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.grid-container
+{
+	margin-left:22%;
+	display: table;
+	margin-top:5%;
+}
+
+.slika1
+{
+	background-image:url('https://i.postimg.cc/Lsf7vMCT/slika1.png');
+}
+
+.slika2
+{
+	background-image:url('https://i.postimg.cc/xCVdFn0T/slika2.jpg');
+}
+
+
+.slika3
+{
+	background-image:url('https://i.postimg.cc/YC4qrh0C/slika3.jpg');
+}
+
+.slika4
+{
+	background-image:url('https://i.postimg.cc/nzKhygzK/slika4.jpg');
+}
+
+.slika5
+{
+	background-image:url('https://i.postimg.cc/xjRdgwBn/slika5.jpg');
+}
+
+.slika6
+{
+	background-image:url('https://i.postimg.cc/Y0bq9FQh/slika6.jpg');
+}
+
+.slika7
+{
+	background-image:url('https://i.postimg.cc/yNc1RtFq/slika7.jpg');
+}
+
+.slika8
+{
+	background-image:url('https://i.postimg.cc/8PzzYyVW/slika8.jpg');
+}
+
+.slika9
+{
+	background-image:url('https://i.postimg.cc/NfCjv1gn/slika9.jpg');
+}
+
+.slika10
+{
+	background-image:url('https://i.postimg.cc/dVzQLwZm/slika10.png');
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 600px)
+{
+	
+	.red {display: block;}
+
+
+}
+
+@media only screen and (max-width: 600px) 
+{
+	
+	.meni a { display: block; text-align: left; }
+	.red {display: block;}
+	.item
+	{
+		width:  200px;
+		height: 200px;
+	}
+
+}

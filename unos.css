@@ -1,0 +1,80 @@
+html, body {
+  height: 100%;
+  margin:0;
+  background-color:#fff;
+  color:  #4d0000;
+}
+
+.meni
+{
+	background-color: silver;
+	width: 100%;
+	z-index: -1;
+	margin-top: 5%;
+	padding-bottom: 5%;
+}
+
+
+.meni a {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: underline;
+    font-size: 22px;
+	padding-bottom:0px;
+	color:  #4d0000;
+
+}
+
+#slika
+{
+	display: block;
+	margin-left: 45%;
+	margin-right: 45%;
+	width: 10%;
+	position:absolute;
+	top:0px;
+}
+
+.sadrzaj 
+{
+	margin-top: 1%;
+	background-color: silver;
+	width: 100%;
+	overflow:auto;
+}
+
+form
+{
+	margin-top:2%;
+}
+
+.grupa
+{
+	display: block;
+}
+
+label 
+{
+	margin-left: 2%;
+	display: inline-block;
+	width:10%;
+}
+
+#dugme
+{
+	margin-left: 2%;
+
+}
+
+
+select, input {margin-bottom: 2%; }
+
+@media only screen and (max-width: 800px) 
+{
+	
+	.meni a { display: block; text-align: left; }
+
+	input, label {display: block; margin-left: 5%;}
+
+
+}

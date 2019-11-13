@@ -1,0 +1,191 @@
+html, body {
+  height: 100%;
+  margin:0;
+  background-color:#fff;
+  color:  #4d0000;
+}
+
+.meni
+{
+	background-color: silver;
+	width: 100%;
+	margin-top: 5%;
+	padding-bottom: 5%;	
+	z-index: -1;
+
+}
+
+
+.meni a {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: underline;
+    font-size: 22px;
+	padding-bottom:0px;
+	color:  #4d0000;
+
+}
+
+#slika
+{
+	display: block;
+	margin-left: 45%;
+	margin-right: 45%;
+	width: 10%;
+	position:absolute;
+	top:0px;
+}
+
+.sadrzaj 
+{
+	margin-top: 1%;
+	background-color: silver;
+	width: 100%;
+	overflow: auto;
+}
+
+.novembar
+{
+
+	background-color:#fff;
+	display: table; 
+	border-collapse:separate;
+    border-spacing: 8px 8px;
+	width:100%;
+	overflow:auto;
+}
+
+.sadrzaj p, #ch
+{ display: inline;}
+
+.red
+{
+	display: table-row; 
+    box-shadow: -100vw 0 0 #fff inset;
+}
+
+.red1
+{
+	display: table-row; 
+    box-shadow: -100vw 0 0 #fff inset;
+}
+
+.dani
+{
+	background-color: white;
+	display: table-cell;
+	border: 3px solid #002f82;
+	height: 30px;
+	width: 50px;
+	font-size:25px;
+	text-align:center;
+}
+
+.item
+{
+	display: table-cell;
+	background-color:#5885d3;
+	border: 3px solid #002f82;
+	height: 50px;
+	width: 50px;
+}
+
+.kalendar
+{
+	background-color: white;
+	width:60%;
+	margin-left: 5%;
+	margin-top: 3%;
+	border: 3px solid #002f82;
+
+
+}
+
+.kalendar, input, #per, #lista
+{
+	display: block;
+	margin-bottom: 1%;
+}
+
+input, #lista
+{
+	margin-left: 3%;
+}
+
+#lista
+{
+	margin-top: 1%;
+}
+
+.rijeci
+{
+	margin-left:3%;
+}
+
+.kalendar p
+{
+	font-size: 25px;
+	text-decoration: strong;
+}
+
+.item1
+{   
+	border-bottom: 3px solid #002f82;
+
+	height: 60%;
+}
+
+.slobodna
+{ 
+	background-color: #006622;
+	height: 40%;
+}
+
+.zauzeta
+{ 
+	background-color: #ff3333;
+	height: 40%;
+}
+
+.sakrij
+{
+  visibility: hidden;
+  height: 40%;
+}
+
+.button1
+{
+	border: 3px solid #002f82;
+	background-color: white;
+	font-size:23px;
+	width:15%;
+	display: inline;
+}
+
+.button2
+{
+	float: right;
+	border: 3px solid #002f82;
+	background-color: white;
+	font-size:23px;
+	width:15%;
+	display: inline;
+}
+
+#dugmad
+{
+	width: 60.2%;
+	margin-left: 5%;
+	margin-bottom: 3%;
+	background: transparent;
+	overflow:auto;
+}
+
+@media only screen and (max-width: 600px) 
+{
+	
+	.meni a { display: block; text-align: left; }
+	.red1 { display: block; }
+	.red {display: none; }
+
+}
