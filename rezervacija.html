@@ -3,6 +3,7 @@
 <head>
 <title>Rezervacija</title>
 <link rel="stylesheet" href="rezervacija.css">
+ <script src="kalendar.js"></script> 
 <META http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 	
@@ -23,7 +24,7 @@
 </div>
 <div class="sadrzaj">
 <div class="rijeci">Odabir sale:</div>
-<select id="lista">
+<select id="opcije">
 	<option value= "0-01">0-01</option>
 	<option value= "0-02">0-02</option>
 	<option value= "0-03">0-03</option>
@@ -48,16 +49,16 @@
 <div id="per">
 	<input id="ch" type="checkbox" name="period" value="period"> <p>Periodična rezervacija</p>
 </div>
-<div class="rijeci">Početak:</div>
- <input type="time" name="Pocetak">
-<div class="rijeci">Kraj:</div>
- <input type="time" name="kraj">
+<div class="rijeci" >Početak:</div>
+ <input id="pocetak" type="time" name="Pocetak">
+<div class="rijeci" >Kraj:</div>
+ <input id="kraj" type="time" name="kraj">
 
 <div class="kalendar">
-<p>Novembar </p>
-<div class="novembar">
+<p id="nazivMjeseca"></p>
+<div class="mjesec">
 
-	<div class="red1">
+	<!--<div class="red1">
 		<div class=" dani">PON</div>
 		<div class=" dani">UTO</div>
 		<div class=" dani">SRI</div>
@@ -65,148 +66,13 @@
 		<div class=" dani">PET</div>
 		<div class=" dani">SUB</div>
 		<div class=" dani">NED</div>
-	</div>
+	</div> -->
 
-	<div class="red1">
-		<div class="item sakrij"></div>
-		<div class="item sakrij"></div>
-		<div class="item sakrij"></div>
-		<div class="item sakrij"></div>
-		<div class="item"> 
-			<div class="item1">1</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">2</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">3</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-	</div>
-	<div class="red">
-		<div class="item">
-			<div class="item1">4</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">5</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">6</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">7</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">8</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">9</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">10</div> 
-			<div class="slobodna"> </div> 
-		</div>
-	</div>
-	<div class="red">
-		<div class="item">
-			<div class="item1">11</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">12</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">13</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">14</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">15</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">16</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">17</div> 
-			<div class="slobodna"> </div> 
-		</div>
-	</div>
-	<div class="red">
-		<div class="item">
-			<div class="item1">18</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">19</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">20</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">21</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">22</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">23</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">24</div> 
-			<div class="slobodna"> </div> 
-		</div>
-	</div>
-	<div class="red">
-		<div class="item">
-			<div class="item1">25</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">26</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">27</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">28</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">29</div> 
-			<div class="zauzeta"> </div> 
-		</div>
-		<div class="item">
-			<div class="item1">30</div> 
-			<div class="slobodna"> </div> 
-		</div>
-		<div class="item sakrij"> </div>
-	</div>
 </div>
 </div>
 <div id="dugmad">
-	<button class="button1">Prethodni</button>
-	<button class="button2">Sljedeći</button>
+	<button id="button1">Prethodni</button>
+	<button id="button2">Sljedeći</button>
 </div>
 
 

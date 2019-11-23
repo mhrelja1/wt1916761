@@ -44,7 +44,7 @@ html, body {
 	overflow: auto;
 }
 
-.novembar
+.mjesec
 {
 
 	background-color:#fff;
@@ -81,14 +81,6 @@ html, body {
 	text-align:center;
 }
 
-.item
-{
-	display: table-cell;
-	background-color:#5885d3;
-	border: 3px solid #002f82;
-	height: 50px;
-	width: 50px;
-}
 
 .kalendar
 {
@@ -101,13 +93,13 @@ html, body {
 
 }
 
-.kalendar, input, #per, #lista
+.kalendar, input, #per, #opcije
 {
 	display: block;
 	margin-bottom: 1%;
 }
 
-input, #lista
+input, #opcije
 {
 	margin-left: 3%;
 }
@@ -126,6 +118,15 @@ input, #lista
 {
 	font-size: 25px;
 	text-decoration: strong;
+}
+
+.item
+{
+	display: table-cell;
+	background-color:#5885d3;
+	border: 3px solid #002f82;
+	height: 50px;
+	width: 50px;
 }
 
 .item1
@@ -147,13 +148,14 @@ input, #lista
 	height: 40%;
 }
 
+
 .sakrij
 {
   visibility: hidden;
   height: 40%;
 }
 
-.button1
+#button1
 {
 	border: 3px solid #002f82;
 	background-color: white;
@@ -162,7 +164,7 @@ input, #lista
 	display: inline;
 }
 
-.button2
+#button2
 {
 	float: right;
 	border: 3px solid #002f82;
