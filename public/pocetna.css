@@ -1,0 +1,97 @@
+html, body {
+  height: 100%;
+  margin:0;
+  background-color:#fff;
+  color:  #4d0000;
+}
+
+.meni
+{
+	background-color: silver;
+	width: 100%;
+	z-index: -1;
+	margin-top: 5%;
+	padding-bottom: 5%;
+}
+
+
+.meni a {
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: underline;
+    font-size: 22px;
+	padding-bottom:0px;
+	color:  #4d0000;
+	display: inline;
+}
+
+#slika
+{
+	display: block;
+	margin-left: 45%;
+	margin-right: 45%;
+	position: absolute;
+	width: 10%;
+	top:0px;
+}
+
+
+.sadrzaj 
+{
+	margin-top: 1%;
+	background-color: silver;
+	width: 100%;
+	overflow: auto;
+}
+
+
+
+
+.item
+{
+	
+    position: relative;
+    float:left;
+    width:  250px;
+    height: 250px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.grid-container
+{
+	margin-left:22%;
+	display: inline;
+	margin-top:5%;
+}
+
+#button1, #button2
+{
+	position: relative;
+    float:left;
+	
+}
+
+
+
+@media only screen and (max-width: 1400px) and (min-width: 600px)
+{
+	
+	.red {display: block;}
+
+
+}
+
+@media only screen and (max-width: 600px) 
+{
+	
+	.meni a { display: block; text-align: left; }
+	.red {display: block;}
+	.item
+	{
+		width:  200px;
+		height: 200px;
+	}
+
+}
