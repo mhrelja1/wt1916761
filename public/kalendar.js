@@ -7,33 +7,12 @@ let Kalendar = (function(){
 	var zadnjiDan= [3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5, 1];
 	var mjeseci= ["Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Oktobar", "Novembar", "Decembar"];
 	var dani= ["PON", "UTO", "SRI", "CET", "PET", "SUB", "NED"];
-	var periodicnaZ ;
-	var vanrednaZ; 
+	var periodicnaZ=new Array() ;
+	var vanrednaZ=new Array; 
 	
 	function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj)
 	{      
-		for (var i=0; i<vanrednaZ.length; i++)
-		{   
-			if (mjesec==(vanrednaZ[i].datum.substring(3, 5))-1 && sala== vanrednaZ[i].naziv && pocetak== vanrednaZ[i].pocetak && kraj== vanrednaZ[i].kraj)
-			{
-				var redElementi= document.getElementsByClassName("red");
-				for (var x=0; x<brojSedmicaUMjesecu[mjesec]; x++)
-				{
-					var itemElementi= redElementi[x].getElementsByClassName("item");
-					
-					for (var y=0; y<7; y++)
-					{ var podKlasa= itemElementi[y].children;
-						if (podKlasa[0].innerHTML==vanrednaZ[i].datum.substring(0,2)) 
-						{  
-							if ( podKlasa[1].classList.contains('slobodna') ) 
-							{podKlasa[1].classList.remove('slobodna');  podKlasa[1].classList.add('zauzeta'); }
 
-						}
-					}
-				}	
-					
-			}
-		}
 		for (var i=0; i<periodicnaZ.length; i++)
 		{
 				
@@ -54,6 +33,28 @@ let Kalendar = (function(){
 						}
 					}
 				}
+			}
+		}
+		for (var i=0; i<vanrednaZ.length; i++)
+		{   
+			if (mjesec==(vanrednaZ[i].datum.substring(3, 5))-1 && sala== vanrednaZ[i].naziv && pocetak== vanrednaZ[i].pocetak && kraj== vanrednaZ[i].kraj)
+			{
+				var redElementi= document.getElementsByClassName("red");
+				for (var x=0; x<brojSedmicaUMjesecu[mjesec]; x++)
+				{
+					var itemElementi= redElementi[x].getElementsByClassName("item");
+					
+					for (var y=0; y<7; y++)
+					{ var podKlasa= itemElementi[y].children;
+						if (podKlasa[0].innerHTML==vanrednaZ[i].datum.substring(0,2)) 
+						{  
+							if ( podKlasa[1].classList.contains('slobodna') ) 
+							{podKlasa[1].classList.remove('slobodna');  podKlasa[1].classList.add('zauzeta'); }
+
+						}
+					}
+				}	
+					
 			}
 		}
 	}
@@ -107,7 +108,9 @@ let Kalendar = (function(){
 						var checkbox= document.getElementById("ch").checked;
 						var dan=this.getAttribute('dan');
 						var redniBrojDana= this.getAttribute('redniBrojDana');
+						if (pocetak!='' && kraj!= '' && pocetak<kraj)
 						Pozivi.unosNovogTermina (sala, pocetak, kraj, checkbox, mjesec, dan, redniBrojDana); 
+						else {alert ("provjerite unos pocetka i kraja!");}
 					}
 					else {
 					
@@ -220,9 +223,24 @@ let Kalendar = (function(){
 			if (document.getElementById("opcije").value!=null && document.getElementById("pocetak").value!=null && document.getElementById("kraj").value!=null) 
 			Kalendar.obojiZauzeca(kalendarRef, mjesec, sala, pocetak, kraj);
 	}
+	
+	function upisiOsobljeImpl(data)
+	{
+		var osoblje= document.getElementById("osoblje");
+		for (var i=0; i<data.length; i++)
+		{
+			var tekst= data[i].ime+" "+data[i].prezime;
+			var option = document.createElement("option");
+			option.innerHTML=tekst;
+			osoblje.appendChild(option);
+		}
+		
+	}
+	
 	return {        
 		obojiZauzeca: obojiZauzecaImpl,        
 		ucitajPodatke: ucitajPodatkeImpl,        
-		iscrtajKalendar: iscrtajKalendarImpl    
+		iscrtajKalendar: iscrtajKalendarImpl,
+		upisiOsoblje: upisiOsobljeImpl
 }}());
 

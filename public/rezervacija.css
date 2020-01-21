@@ -58,6 +58,7 @@ html, body {
 .sadrzaj p, #ch
 { display: inline;}
 
+
 .red
 {
 	display: table-row; 
@@ -97,9 +98,10 @@ html, body {
 {
 	display: block;
 	margin-bottom: 1%;
+	margin-top: 1%;
 }
 
-input, #opcije
+input, #opcije, #osoblje
 {
 	margin-left: 3%;
 }
