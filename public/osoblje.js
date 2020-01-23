@@ -1,6 +1,6 @@
 window.onload= function ()
 {
-	Pozivi.ucitajSale(function (data)
+	Pozivi.ucitajSaleO(function (data)
 	{
 		
 		

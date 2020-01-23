@@ -1,18 +1,19 @@
 window.onload= function ()
 {
-	Pozivi.ucitajUKalendar(function(data) {
-	var per= data.periodicna;
-	var van= data.vanredna;
-	Kalendar.ucitajPodatke (per, van);
 
-	});
-	Pozivi.ucitajOsoblje(function (data)
-	{
-		Kalendar.upisiOsoblje (data);
-		
+	
+	Pozivi.ucitajRezervacije (data => {
+	var per=data.periodicna;
+	var van=data.vanredna;
+	
+	Kalendar.ucitajPodatke (per, van);
 	});
 	
-	Kalendar.iscrtajKalendar (document.getElementsByClassName("mjesec"), 10);
-	
+	Pozivi.ucitajOsoblje (data => {
+		Kalendar.upisiOsoblje(data);
+	});
+
+	Kalendar.iscrtajKalendar (document.getElementsByClassName("mjesec"), 0);
+
 
 }

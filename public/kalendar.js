@@ -1,28 +1,26 @@
 let Kalendar = (function(){
     
 	
-	var brojDanaUMjesecu= [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-	var brojSedmicaUMjesecu= [5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 6 ];
-	var prviDan= [1, 4, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6];
-	var zadnjiDan= [3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5, 1];
+	var brojDanaUMjesecu= [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	var brojSedmicaUMjesecu= [5, 5, 6, 5, 5, 5, 5, 6, 5, 5, 6, 5 ];
+	var prviDan= [2, 5, 6, 2, 4, 0, 2, 5, 1, 3, 6, 1];
+	var zadnjiDan= [4, 5, 1, 3, 6, 1, 4, 0, 2, 5, 0, 3];
 	var mjeseci= ["Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Oktobar", "Novembar", "Decembar"];
 	var dani= ["PON", "UTO", "SRI", "CET", "PET", "SUB", "NED"];
 	var periodicnaZ=new Array() ;
 	var vanrednaZ=new Array; 
 	
 	function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj)
-	{      
-
+	{  
+		
 		for (var i=0; i<periodicnaZ.length; i++)
 		{
-				
 			if (sala== periodicnaZ[i].naziv && pocetak== periodicnaZ[i].pocetak && kraj== periodicnaZ[i].kraj && ((periodicnaZ[i].semestar=="ljetni" && (mjesec==1 || mjesec==2 || mjesec==3 || mjesec==4 || mjesec==5)) || (periodicnaZ[i].semestar=="zimski" && (mjesec==9 || mjesec==10 || mjesec==11 || mjesec==0))) )
 			{   
 				var redElementi= document.getElementsByClassName("red");
 				for (var x=0; x<brojSedmicaUMjesecu[mjesec]; x++)
 				{
 					var itemElementi= redElementi[x].getElementsByClassName("item");
-					
 					for (var y=0; y<7; y++)
 					{ var podKlasa= itemElementi[y].children;
 						if (y==periodicnaZ[i].dan) 
@@ -62,7 +60,7 @@ let Kalendar = (function(){
 	{
 		periodicnaZ= periodicna;
 		vanrednaZ= vanredna;
-		
+
 	}
 	function iscrtajKalendarImpl(kalendarRef, mjesec)
 	{       

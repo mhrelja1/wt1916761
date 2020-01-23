@@ -6,8 +6,7 @@ const path = require('path');
 const db = require('./db.js');
 var Sequelize = require("sequelize");
 
-	var vanredna= new Array();
-	var redovna= new Array();
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -70,13 +69,12 @@ app.post('/', function (req, res) {
 
 app.post('/rezervacija.html', function(req, res) {
 
-  //ispitaj da li postojii iz req, ako nema kreiraj i vrati podatke o osobi
   var bod=req.body;
   var postoji= true;
   var nadjeniTermin;
 	
 db.sala.findOne ({where: {naziv: bod.naziv}}).then ( function (nadjenaSala) {
-	
+	console.log (nadjenaSala);
 	db.osoblje.findOne ({where: {id: bod.predavac}}).then (function (nadjenaOsoba)
 	{ 
 	
@@ -143,93 +141,97 @@ db.sala.findOne ({where: {naziv: bod.naziv}}).then ( function (nadjenaSala) {
   
 });
 
-// za spiralu4
-//sva zauzeca dohvatiti ajaxom i iz baze, kako??
 
+app.get ('/rezervacije', function(req, res) {
+	
+ (async () => {
+	await db.sequelize.sync();
+	let osoblje = await db.osoblje.findAll ();
+	let sale=await db.sala.findAll ();
+	let rezervacije= await db.rezervacija.findAll ();
+	let termini= await db.termin.findAll ();
+	let upisi;
+	var per= new Array();
+	var van=new Array();
+	
+	rezervacije.forEach (rezervacija=> {
+		var datum;
+		var dan; 
+		var semestar;
+		var pocetak;
+		var kraj;
+		var predavac;
+		var naziv;
+		var tacno=true;
+		
+		for (var i=0; i<termini.length; i++)
+		{
+			if (termini[i].id== rezervacija.terminId) 
+			{
+				if (termini[i].redovni==false) { datum= termini[i].datum;  console.log(datum); pocetak=termini[i].pocetak; kraj=termini[i].kraj; tacno=false; }
+				if (termini[i].redovni==true) { dan=termini[i].dan; semestar=termini[i].semestar; pocetak=termini[i].pocetak; kraj=termini[i].kraj;}
+			}
+		}
+		for (var i=0; i<sale.length; i++)
+		{
+			if (sale[i].id== rezervacija.salaId) naziv= sale[i].naziv;
+		}
+		for (var i=0; i<osoblje.length; i++)
+		{
+			if (osoblje[i].id== rezervacija.osobljeId) predavac= osoblje[i].ime+" "+osoblje[i].prezime;
+		}
+		if (tacno==false)
+		{	
+			van.push(
+				{"datum": datum,
+				"pocetak": pocetak,
+				"kraj": kraj,
+				"naziv": naziv,
+				"predavac": predavac});
+		}
+		if (tacno==true)
+		{
+			per.push(
+			{"dan": dan,
+			"semestar": semestar,
+			"pocetak": pocetak,
+			"kraj": kraj,
+			"naziv": naziv,
+			"predavac": predavac});
+		}
+	
+	});
+   upisi= {"periodicna":per, "vanredna":van};
+   res.send(upisi);
+})();
+
+});
+
+app.get ('/sale', function(req, res) {
+	
+	db.sala.findAll().then( function (sale) 
+	{
+		res.json(sale);
+	});
+});
+
+app.get ('/termini', function(req, res) {
+	
+	db.termin.findAll().then( function (termini) 
+	{
+		res.json(termini);
+	});
+});
 
 app.get ('/osoblje', function(req, res) {
-	
 	db.osoblje.findAll().then( function (osobe) 
 	{
 		res.json(osobe);
 	});
 });
 
-app.get ('/zauzeca', function(req, res) {
-	
-var brojac=0;
-	
-	db.rezervacija.findAll().then( function (rezervacije) 
-	{
-		rezervacije.forEach( rezervacija=>
-		{	brojac++;
-			db.termin.findOne ({where: {id: rezervacija.terminId}}).then ( nadjeniTermin=>
-				{
-					db.sala.findOne ({where: {id: rezervacija.salaId}}).then (nadjenaSala=> 
-						{
-							db.osoblje.findOne ({where: {id: rezervacija.osobljeId}}).then (nadjenaOsoba=> 
-								{   
-									var predavac= nadjenaOsoba.ime+" "+nadjenaOsoba.prezime;							
-									if (nadjeniTermin.redovni==false) 
-									{vanredna.push(
-										{"datum": nadjeniTermin.datum,
-										"pocetak": nadjeniTermin.pocetak,
-										"kraj": nadjeniTermin.kraj,
-										"naziv": nadjenaSala.naziv,
-										"predavac": predavac}
-									);
 
-									
-
-									}
-									else if (nadjeniTermin.redovni==true)
-									{redovna.push (
-										{"dan": nadjeniTermin.dan,
-										"semestar": nadjeniTermin.semestar,
-										"pocetak": nadjeniTermin.pocetak,
-										"kraj": nadjeniTermin.kraj,
-										"naziv": nadjenaSala.naziv,
-										"predavac": predavac}
-										);
-										
-									}		
-									
-								}
-								
-							
-							);
-						}
-					
-					);
-					
-				});
-				
-			
-		});
-
-	});	
-	
-//var zauzeca= {"vanredna": vanredna, "periodicna": redovna};
-		console.log(vanredna);
-		console.log(redovna);
-
-	
-	
-	
-});
-
-
-app.get ('/sale', function(req, res) {
-	
-	/*db.rezervacija.findAll().then( function (rez) 
-	{
-		rez.forEach(rezi => 
-		{
-			//osoba.getRezervisalaOsoba().then (rez => {rez.getTermin().then(termin=> {console.log ("\t"+osoba.ime+" "+termin.pocetak);});});
-			console.log ("\t"+rezi.salaId);
-			db.sala.findOne ({where: {id: rezi.salaId}}). then (sala=> {console.log(sala.naziv);});
-		});
-	});*/
+app.get ('/saleOsoblja', function(req, res) {
 	
 	var datetime = new Date();
 
@@ -247,36 +249,40 @@ app.get ('/sale', function(req, res) {
 	var sat= datetime.getHours().toString();
 	var min=datetime.getMinutes().toString();
 	var vrijeme= sat+":"+min;
-    //console.log(datum +" "+semestar+" "+danSedmica);
 	var rez= new Array();
-	var reci;
+	var lista=new Array();
+	console.log(vrijeme);
 	
-	db.termin.findAll ({where: {
+	(async () => {
+	await db.sequelize.sync();
+	console.log(datum);
+	let termini = await 	db.termin.findAll ({where:  {
 		[Sequelize.Op.or]: 
-			[{dan:null, datum: datum, semestar:null, pocetak: {[Sequelize.Op.lte]:vrijeme}, kraj:{[Sequelize.Op.lte]:vrijeme}},
-			{dan:danSedmica, datum:null, semestar: semestar, pocetak: {[Sequelize.Op.lte]:vrijeme}, kraj:{[Sequelize.Op.lte]:vrijeme} }]}})
-	.then (termini => {
-		db.osoblje.findAll().then(osobe=>
-		{
-			termini.forEach(termin => { 
-			
-				osobe.forEach(osoba => {
-					
-					db.rezervacija.findAll ({where: {terminId: termin.id, osobljeId:osobe.id }})
-					.then (rezervacija=> { 
-						sala.findOne({where:{id: rezervacija.salaId}})
-						.then (sala=> {
-							rez.push({"sala": sala.naziv, "osoba":osobe.id });
-
-						});
-					}); //pretrazi osobe, ako ima salu uzmi, ako nema u kancelariji
-				});
-			});
+		[{dan:null, datum: datum, semestar:null,  
+		[Sequelize.Op.and]:  [
+		{pocetak: {[Sequelize.Op.lte]:vrijeme}}, {kraj:{[Sequelize.Op.gte]:vrijeme}}]},
+		{dan:danSedmica, datum:null, semestar: semestar, [Sequelize.Op.and]: [ {pocetak: {[Sequelize.Op.lte]:vrijeme}}, {kraj:{[Sequelize.Op.gte]:vrijeme}}] }]}});
+	let osoblje= await 	db.osoblje.findAll();
+	let sale= await 	db.sala.findAll();
+	let rezervacije= await 	db.rezervacija.findAll();
+	
+	osoblje.forEach ( osoba=>
+	{	var ime=osoba.ime+" "+osoba.prezime;
+		termini.forEach (termin=> {
+			for (var i=0; i<rezervacije.length; i++)
+			{
+				if (rezervacije[i].osobljeId==osoba.id && rezervacije[i].terminId==termin.id)
+				{
+					sale.forEach (sala=> { if (sala.id==rezervacije[i].salaId) lista.push({"sala":sala.naziv, "osoba":ime}); });
+				}
+			}
 		});
-	});
+	}
+	);
+	
 
-	res.json("rez");
-
+	res.json(lista);
+	})();
 });
 
 
